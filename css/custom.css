@@ -1,0 +1,266 @@
+/* =========================================================
+   Custom Overrides (put AFTER styles.css)
+   ========================================================= */
+
+/* 1) Theme variables (غير الألوان من هنا) */
+:root{
+  --brand-primary: #f4623a;
+  --brand-primary-hover: #c34e2e;
+
+  --brand-text: #212529;
+  --brand-bg: #ffffff;
+
+  --brand-focus: rgba(244, 98, 58, 0.25);
+}
+
+/* اربط متغيرات Bootstrap بمتغيراتك */
+:root{
+  --bs-primary: var(--brand-primary);
+  --bs-link-color: var(--brand-primary);
+  --bs-link-hover-color: var(--brand-primary-hover);
+}
+
+/* 2) RTL support (لو موقعك عربي) */
+html[dir="rtl"], body[dir="rtl"]{
+  direction: rtl;
+  text-align: right;
+}
+html[dir="rtl"] input[type="email"],
+html[dir="rtl"] input[type="tel"],
+html[dir="rtl"] input[type="url"],
+html[dir="rtl"] input[type="number"]{
+  direction: ltr;
+  text-align: left;
+}
+
+/* 3) Links */
+a{
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+a:hover{
+  text-decoration-thickness: 2px;
+}
+
+/* 4) Buttons */
+.btn-primary{
+  background-color: var(--brand-primary) !important;
+  border-color: var(--brand-primary) !important;
+}
+.btn-primary:hover,
+.btn-primary:focus{
+  background-color: var(--brand-primary-hover) !important;
+  border-color: var(--brand-primary-hover) !important;
+}
+.btn-outline-primary{
+  color: var(--brand-primary) !important;
+  border-color: var(--brand-primary) !important;
+}
+.btn-outline-primary:hover{
+  background-color: var(--brand-primary) !important;
+  border-color: var(--brand-primary) !important;
+  color: #fff !important;
+}
+
+/* 5) Forms focus */
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus{
+  border-color: color-mix(in srgb, var(--brand-primary) 60%, white) !important;
+  box-shadow: 0 0 0 0.25rem var(--brand-focus) !important;
+}
+
+/* 6) Navbar */
+.navbar .nav-link{
+  font-weight: 500;
+}
+.navbar .nav-link:hover{
+  color: var(--brand-primary) !important;
+}
+
+/* 7) Smooth scroll helper */
+section{
+  scroll-margin-top: 90px;
+}
+
+/* --- Video Hero Background --- */
+header.masthead {
+  position: relative;
+  overflow: hidden;
+}
+header.masthead .container {
+  position: relative;
+  z-index: 2;
+}
+.masthead-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.masthead-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .masthead-video { display: none; }
+}
+
+/* =========================
+   NEW: Skills chips + lists
+   ========================= */
+.chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+.chip{
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(33, 37, 41, 0.06);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.list-clean{
+  padding-left: 18px;
+  margin: 0;
+}
+.list-clean li{
+  margin-bottom: 8px;
+}
+
+/* =========================
+   NEW: About micro stats
+   ========================= */
+.about-micro{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.about-micro-item{
+  padding: 14px 14px;
+  border-radius: 16px;
+  background: rgba(33, 37, 41, 0.04);
+}
+.about-micro-num{
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.about-micro-label{
+  margin-top: 6px;
+  color: rgba(33, 37, 41, 0.7);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+@media (max-width: 992px){
+  .about-micro{ grid-template-columns: 1fr; }
+}
+
+/* =========================
+   NEW: Timeline (Experience)
+   ========================= */
+.timeline{
+  position: relative;
+  padding-left: 18px;
+}
+.timeline:before{
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(33, 37, 41, 0.12);
+}
+.timeline-item{
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 22px;
+}
+.timeline-dot{
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+  box-shadow: 0 0 0 4px rgba(244, 98, 58, 0.18);
+}
+.timeline-content{
+  padding: 16px 16px;
+  border-radius: 18px;
+  background: rgba(33, 37, 41, 0.04);
+}
+.timeline-top{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.timeline-date{
+  font-weight: 700;
+  color: rgba(33, 37, 41, 0.6);
+  white-space: nowrap;
+}
+@media (max-width: 576px){
+  .timeline-top{ flex-direction: column; align-items: flex-start; }
+}
+
+/* Education mini card */
+.edu-card{
+  display: flex;
+  gap: 12px;
+  padding: 16px 16px;
+  border-radius: 18px;
+  background: rgba(33, 37, 41, 0.04);
+  align-items: center;
+}
+.edu-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(244, 98, 58, 0.14);
+  color: var(--brand-primary);
+  font-size: 1.2rem;
+}
+
+/* =========================
+   NEW: Video modal styling
+   ========================= */
+.video-modal{
+  border-radius: 18px;
+  overflow: hidden;
+}
+.video-modal .modal-header{
+  padding: 14px 16px;
+}
+.video-modal .modal-title{
+  font-weight: 800;
+}
+
+/* --- Fix: remove old masthead background image (no flash) --- */
+header.masthead{
+  background-image: none !important;
+  background-color: #000 !important; /* fallback while video loads */
+}
+
+/* optional: smooth fade-in for video */
+.masthead-video{
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.masthead-video.is-loaded{
+  opacity: 1;
+}
