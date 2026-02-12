@@ -87,6 +87,7 @@ section{
 header.masthead {
   position: relative;
   overflow: hidden;
+  background-image: none !important; 
 }
 header.masthead .container {
   position: relative;
@@ -269,4 +270,28 @@ header.masthead{
 .portfolio-box iframe,
 .portfolio-box video {
   border-radius: 8px;
+}
+
+.portfolio-box .portfolio-box-caption {
+  display: none !important;
+}
+
+#work .portfolio-box {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding-left: 16px;  /* من اليسار */
+  padding-right: 16px; /* من اليمين */
+}
+
+/* تباعد بين الصفوف */
+#work .row {
+  margin-bottom: 16px;
+}
+
+/* تباعد كامل للقسم */
+#work {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 16px;  /* من اليسار */
+  padding-right: 16px; /* من اليمين */
 }
