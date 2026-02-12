@@ -292,6 +292,6 @@ header.masthead{
 #work {
   padding-top: 16px;
   padding-bottom: 16px;
-  padding-left: 16px;  /* من اليسار */
-  padding-right: 16px; /* من اليمين */
+  padding-left: 16px;
+  padding-right: 16px;
 }
