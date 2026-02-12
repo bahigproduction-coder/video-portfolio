@@ -264,3 +264,18 @@ header.masthead{
 .masthead-video.is-loaded{
   opacity: 1;
 }
+
+.portfolio-box img,
+.portfolio-box iframe,
+.portfolio-box video {
+  border-radius: 8px;
+}
+
+
+.portfolio-box-caption {
+  border-bottom: 2px solid #f4623a;
+}
+
+.hr.divider {
+  background-color: #f4623a;
+}
