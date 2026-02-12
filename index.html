@@ -79,7 +79,7 @@
             </h1>
 
             <p class="text-white-75 hero-sub mb-4">
-              Senior Video Editor (KSA) + Freelance background. Long-form & short-form, motion graphics, color grading, and audio polish.
+              Senior Video Editor + Freelance background. Long-form & short-form, motion graphics, color grading, and audio polish.
             </p>
 
             <div class="d-flex gap-3 flex-wrap">
@@ -615,9 +615,6 @@
            data-video="https://www.youtube-nocookie.com/embed/96cPBnwTACI"
            >
           <img class="img-fluid" src="assets/img/portfolio/thumbnails/Reel-image05.png" alt="Vertical video 2" />
-          <div class="portfolio-box-caption">
-            <div class="project-category text-white-50">Vertical</div>
-          </div>
         </a>
       </div>
 
@@ -628,9 +625,6 @@
            data-video="https://www.youtube-nocookie.com/embed/zrBnwlP9zPU"
            >
           <img class="img-fluid" src="assets/img/portfolio/thumbnails/Reel-image06.png" alt="Vertical video 6" />
-          <div class="portfolio-box-caption">
-            <div class="project-category text-white-50">Vertical</div>
-          </div>
         </a>
       </div>
     </div>
@@ -717,39 +711,33 @@
       </div>
     </footer>
 
-    <!-- VIDEO MODAL (opens videos inside the site) -->
-    <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content video-modal">
-          <div class="modal-header border-0">
-            <h5 class="modal-title">Project Video</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="ratio ratio-16x9">
-  <!-- YouTube/Vimeo -->
-  <iframe
-    id="videoModalFrame"
-    src=""
-    title="Video player"
-    allow="autoplay; fullscreen; picture-in-picture"
-    allowfullscreen
-    style="display:none;"
-  ></iframe>
-
-  <!-- Local MP4 -->
-  <video
-    id="videoModalLocal"
-    controls
-    playsinline
-    style="width:100%; height:100%; display:none;"
-  ></video>
-</div>
-
-          </div>
+   <!-- VIDEO MODAL (opens videos inside the site) -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content video-modal">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Project Video</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="ratio ratio-16x9">
+          <!-- YouTube Video iframe -->
+          <iframe
+            id="videoModalFrame"
+            src="https://www.youtube-nocookie.com/embed/-rhStSJy6Ls?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=0"
+            title="Video player"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            style="display:none;"
+            frameborder="0"
+          ></iframe>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -761,7 +749,7 @@
     <script src="js/scripts.js"></script>
 
     <!-- Helper: year + video modal logic -->
-    <script>
+   <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
   // Fade-in hero video when ready
@@ -771,46 +759,38 @@
   }
 
   // Video modal logic (YouTube + Local)
-  const videoModal = document.getElementById("videoModal");
-  const frame = document.getElementById("videoModalFrame");
-  const localVideo = document.getElementById("videoModalLocal");
+// Video modal logic (YouTube + Local)
+const videoModal = document.getElementById("videoModal");
+const frame = document.getElementById("videoModalFrame");
 
-  function stopAll() {
-    // stop iframe
-    frame.src = "";
-    frame.style.display = "none";
+function stopAll() {
+  // stop iframe
+  frame.src = "";
+  frame.style.display = "none";
+}
 
-    // stop local video
-    localVideo.pause();
-    localVideo.removeAttribute("src");
-    localVideo.load();
-    localVideo.style.display = "none";
-  }
+videoModal.addEventListener("show.bs.modal", function (event) {
+  const trigger = event.relatedTarget;
+  if (!trigger) return;
 
-  videoModal.addEventListener("show.bs.modal", function (event) {
-    const trigger = event.relatedTarget;
-    if (!trigger) return;
+  const url = trigger.getAttribute("data-video");
+  if (!url) return;
 
-    const type = trigger.getAttribute("data-type") || "youtube";
-    const url = trigger.getAttribute("data-video");
-    if (!url) return;
+  stopAll();
 
-    stopAll();
+  // إضافة المعلمات لإخفاء العناصر غير المرغوب فيها
+  const newUrl = url + (url.includes("?") ? "&" : "?") + "autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=0";
 
-    if (type === "local") {
-      localVideo.src = url;
-      localVideo.style.display = "block";
-      // autoplay (اختياري)
-      localVideo.play().catch(() => {});
-    } else {
-      frame.style.display = "block";
-      frame.src = url + (url.includes("?") ? "&" : "?") + "autoplay=1";
-    }
-  });
+  // تشغيل الفيديو
+  frame.style.display = "block";
+  frame.src = newUrl;
+});
 
-  videoModal.addEventListener("hidden.bs.modal", function () {
-    stopAll();
-  });
+videoModal.addEventListener("hidden.bs.modal", function () {
+  stopAll();
+});
+
+
 
   // Show more toggle (9 videos = 3 rows)
   const showMoreBtn = document.getElementById("showMoreBtn");
